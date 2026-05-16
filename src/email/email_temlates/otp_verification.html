@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Email Verification</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+</head>
+<body style="margin:0; padding:0; background-color:#f0f2f5; font-family:'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing:antialiased;">
+
+  <!-- Outer wrapper -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f2f5;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+
+        <!-- Card -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px; background-color:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+          <!-- Header gradient bar -->
+          <tr>
+            <td style="height:6px; background:linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7);"></td>
+          </tr>
+
+          <!-- Logo / Brand -->
+          <tr>
+            <td align="center" style="padding:32px 32px 0 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="background:linear-gradient(135deg, #6366f1, #8b5cf6); width:48px; height:48px; border-radius:12px; text-align:center; vertical-align:middle;">
+                    <span style="font-size:24px; color:#ffffff; font-weight:700; line-height:48px;">L</span>
+                  </td>
+                  <td style="padding-left:12px;">
+                    <span style="font-size:20px; font-weight:700; color:#1e1b4b; letter-spacing:-0.3px;">LobsterPath</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Illustration / Icon -->
+          <tr>
+            <td align="center" style="padding:28px 32px 0 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="background-color:#eef2ff; width:72px; height:72px; border-radius:50%; text-align:center; vertical-align:middle;">
+                    <span style="font-size:32px; line-height:72px;">✉️</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Heading -->
+          <tr>
+            <td align="center" style="padding:24px 32px 0 32px;">
+              <h1 style="margin:0; font-size:22px; font-weight:700; color:#1e1b4b; line-height:1.3;">
+                Verify Your Email Address
+              </h1>
+            </td>
+          </tr>
+
+          <!-- Greeting -->
+          <tr>
+            <td style="padding:16px 32px 0 32px;">
+              <p style="margin:0; font-size:15px; color:#4b5563; line-height:1.6;">
+                Hi <strong style="color:#1e1b4b;">{{ user_name }}</strong>,
+              </p>
+              <p style="margin:8px 0 0 0; font-size:15px; color:#4b5563; line-height:1.6;">
+                We received a request to verify your email address. Use the one-time password below to complete the verification:
+              </p>
+            </td>
+          </tr>
+
+          <!-- OTP Code Block -->
+          <tr>
+            <td align="center" style="padding:28px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius:12px; border:2px dashed #a5b4fc;">
+                <tr>
+                  <td style="padding:20px 40px;">
+                    <span style="font-size:36px; font-weight:800; letter-spacing:10px; color:#4338ca; font-family:'Courier New', Courier, monospace;">
+                      {{ otp_code }}
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Expiry notice -->
+          <tr>
+            <td align="center" style="padding:0 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color:#fef3c7; border-radius:8px; border-left:4px solid #f59e0b;">
+                <tr>
+                  <td style="padding:12px 16px;">
+                    <p style="margin:0; font-size:13px; color:#92400e; line-height:1.5;">
+                      ⏱ This code expires in <strong>1 minute</strong>. If it expires, you can request a new one.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Security notice -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <p style="margin:0; font-size:13px; color:#6b7280; line-height:1.6;">
+                🔒 <strong>Security tip:</strong> Never share this code with anyone. LobsterPath will never ask you for your OTP via phone or chat.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Didn't request -->
+          <tr>
+            <td style="padding:16px 32px 0 32px;">
+              <p style="margin:0; font-size:13px; color:#9ca3af; line-height:1.6;">
+                If you didn't request this verification, you can safely ignore this email. Your account remains secure.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:28px 32px 0 32px;">
+              <hr style="margin:0; border:none; border-top:1px solid #e5e7eb;" />
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="padding:20px 32px 32px 32px;">
+              <p style="margin:0; font-size:12px; color:#9ca3af; line-height:1.5;">
+                © {{ year }} LobsterPath. All rights reserved.
+              </p>
+              <p style="margin:4px 0 0 0; font-size:12px; color:#9ca3af; line-height:1.5;">
+                This is an automated message — please do not reply directly.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Card -->
+
+      </td>
+    </tr>
+  </table>
+  <!-- /Outer wrapper -->
+
+</body>
+</html>

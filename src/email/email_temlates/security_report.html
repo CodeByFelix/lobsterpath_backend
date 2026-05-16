@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header { background: #1a1a2e; color: white; padding: 30px; border-radius: 10px 10px 0 0; text-align: center; }
+        .content { background: #f9f9f9; padding: 30px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 10px 10px; }
+        .footer { text-align: center; margin-top: 20px; font-size: 0.8em; color: #777; }
+        h1 { margin: 0; font-size: 24px; }
+        h3 { color: #16213e; border-bottom: 2px solid #e94560; padding-bottom: 5px; margin-top: 25px; }
+        .date { font-style: italic; color: #666; margin-bottom: 20px; }
+        .report-body { background: white; padding: 20px; border-radius: 5px; border-left: 5px solid #16213e; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Comprehensive Security Report</h1>
+        <p>AI-SOC Control Plane Analysis</p>
+    </div>
+    <div class="content">
+        <h2>Target: {{ target_name }}</h2>
+        <p class="date">Generated on: {{ date }}</p>
+        
+        <div class="report-body">
+            {{ report_content }}
+        </div>
+
+        <p style="margin-top: 30px;">
+            This report was generated using the last 50 audit events captured by your AI Gateway. 
+            For real-time monitoring, please visit your dashboard.
+        </p>
+    </div>
+    <div class="footer">
+        &copy; {{ year }} LobsterPath AI Security Operations Center. All rights reserved.
+    </div>
+</body>
+</html>
