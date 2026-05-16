@@ -8,3 +8,4 @@ src/routers/__pycache__
 .env
 test.ipynb
 documentation.md
+env.txt

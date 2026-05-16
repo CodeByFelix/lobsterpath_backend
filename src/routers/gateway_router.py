@@ -132,8 +132,10 @@ async def ai_gateway(
         
         if "host" in headers:
             del headers["host"]
-        logging.info(f"Headers: {headers}")
-        logging.info(f"Body: {body}")
+        if "accept-encoding" in headers:
+            del headers["accept-encoding"]
+        #logging.info(f"Headers: {headers}")
+        #logging.info(f"Body: {body}")
         async with httpx.AsyncClient() as client:
             try:
                 # Forward the request to Lobster Trap
@@ -147,8 +149,8 @@ async def ai_gateway(
                 # 7. Extract Egress Observability (Usage, Model, Snippet, and Security Metadata)
                 try:
                     resp_json = proxy_resp.json()
-                    logging.info(f"Response Body: {resp_json}")
-                    logging.info(f"Response Headers: {dict(proxy_resp.headers)}")
+                    #logging.info(f"Response Body: {resp_json}")
+                    #logging.info(f"Response Headers: {dict(proxy_resp.headers)}")
                     
                     # Usage & Model
                     usage = resp_json.get("usage", {})
