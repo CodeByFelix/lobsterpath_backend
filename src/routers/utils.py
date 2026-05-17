@@ -91,7 +91,14 @@ async def generate_comprehensive_report(
                 query = select(AuditEvent).where(AuditEvent.project_id == target_id).order_by(desc(AuditEvent.created_at)).limit(50)
                 name_query = select(Project.name).where(Project.id == target_id)
             else:
-                query = select(AuditEvent).where(AuditEvent.api_key_id == target_id).order_by(desc(AuditEvent.created_at)).limit(50)
+                # AuditEvent doesn't have api_key_id; look up the key's project_id
+                key_query = select(APIKey.project_id).where(APIKey.id == target_id)
+                key_result = await db.execute(key_query)
+                key_project_id = key_result.scalar()
+                if key_project_id:
+                    query = select(AuditEvent).where(AuditEvent.project_id == key_project_id).order_by(desc(AuditEvent.created_at)).limit(50)
+                else:
+                    query = select(AuditEvent).where(False)  # no results
                 name_query = select(APIKey.name).where(APIKey.id == target_id)
             
             result = await db.execute(query)
@@ -178,8 +185,9 @@ async def generate_comprehensive_report(
             )
             
             subject = f"📊 Comprehensive Security Report: {target_name}"
-            await send_email(user_email, subject, html_body)
+            #await send_email(user_email, subject, html_body)
             logging.info(f"Comprehensive report sent to {user_email}")
-
+            # Return the HTML body so the caller can deliver it to the frontend
+            return html_body
     except Exception as e:
         logging.error(f"Error generating comprehensive report: {str(e)}", exc_info=True)

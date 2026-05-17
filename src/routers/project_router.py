@@ -719,17 +719,16 @@ async def generate_project_report(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Selected API Key not found for this project.")
 
     # 3. Trigger background task using the API Key's provider details
-    background_tasks.add_task(
-        generate_comprehensive_report,
+    # 3. Generate report synchronously
+    html_body = await generate_comprehensive_report(
         target_id=str(project_id),
         target_type="project",
         provider_url=api_key.backend_url,
         provider_key=api_key.backend_api_key or "",
         user_email=project.alert_email,
-        model=report_data.model
+        model=report_data.model,
     )
-
-    return {"message": "Report generation started. You will receive an email shortly."}
+    return {"report_html": html_body, "message": "Report generated successfully."}
 
 @project_router.post(
     "/api-keys/{api_key_id}/generate-report",
@@ -782,9 +781,8 @@ async def generate_apikey_report(
     if not email:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="No alert email configured for the parent project.")
 
-    # 3. Trigger background task
-    background_tasks.add_task(
-        generate_comprehensive_report,
+    # 3. Generate report synchronously
+    html_body = await generate_comprehensive_report(
         target_id=str(api_key_id),
         target_type="apikey",
         provider_url=api_key.backend_url,
@@ -792,5 +790,4 @@ async def generate_apikey_report(
         user_email=email,
         model=model
     )
-    
-    return {"message": "Report generation started. You will receive an email shortly."}
+    return {"report_html": html_body, "message": "Report generated successfully."}

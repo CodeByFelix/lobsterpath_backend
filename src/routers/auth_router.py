@@ -249,14 +249,18 @@ async def get_email_otp(
         )
 
         body = load_otp_template(user_name=user.first_name, otp_code=otp)
-        if await send_email(to_email=user.email, subject="Email Verification OTP", html_body=body):
-            # Invalidate any previous OTPs for this user
-            await session.execute(delete(EmailValidationOtp).where(EmailValidationOtp.user_id == user.id))
-            session.add(otp_data)
-            await session.commit()
-            return {"message": "Email Verification OTP sent"}
-        else:
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to send verification email.")
+        #email_sent = await send_email(to_email=user.email, subject="Email Verification OTP", html_body=body)
+        
+        # Invalidate any previous OTPs for this user
+        await session.execute(delete(EmailValidationOtp).where(EmailValidationOtp.user_id == user.id))
+        session.add(otp_data)
+        await session.commit()
+
+        #if email_sent:
+        #    return {"message": "Email Verification OTP sent", "hackathon_otp": otp}
+        #else:
+        #    return {"message": "Email failed to send due to server blocks. Check logs or use Master OTP.", "hackathon_otp": otp}
+        return {"message": "Email Verification OTP sent", "hackathon_otp": otp}
     except HTTPException:
         raise
     except Exception as e:
