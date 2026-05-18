@@ -196,11 +196,6 @@ MODEL_BANK = {
         "deepseek-coder"
     ],
     "OpenRouter": [
-        "anthropic/claude-3.5-sonnet",
-        "meta-llama/llama-3.1-405b-instruct",
-        "google/gemini-pro-1.5",
-        "mistralai/mistral-large",
-        "perplexity/llama-3.1-sonar-huge-128k-online",
         "openai/gpt-5.2",
         "anthropic/claude-sonnet-4"
     ]
