@@ -8,8 +8,8 @@ It works in tandem with [**Lobster Trap**](https://github.com/user/lobstertrap) 
 
 ---
 -**Frontend Codebase: https:** https://github.com/CodeByFelix/lobsterpath_frontend
-
 -**Lobster Trap Codebase:** https://github.com/CodeByFelix/lobstertrap
+
 ---
 
 ## ✨ Key Features
