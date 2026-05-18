@@ -353,6 +353,30 @@ async def list_api_keys(
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to retrieve API keys.")
 
 @project_router.get(
+    "/api-keys/", 
+    response_model=List[APIKeyRead],
+    summary="List all API Keys for user",
+    responses={
+        status.HTTP_401_UNAUTHORIZED: {"description": "Invalid Token or Token Expired"},
+        status.HTTP_500_INTERNAL_SERVER_ERROR: {"description": "Database error"}
+    }
+)
+async def list_all_api_keys(
+    current_user: UserRead = Depends(get_current_user),
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    Lists all API keys across all projects owned by the current user.
+    """
+    try:
+        query = select(APIKey).join(Project, APIKey.project_id == Project.id).where(Project.user_id == current_user.id)
+        result = await session.execute(query)
+        return result.scalars().all()
+    except Exception as e:
+        logging.error(f"Error listing all API Keys: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to retrieve API keys.")
+
+@project_router.get(
     "/policies/{project_id}", 
     response_model=PolicyRead,
     summary="Get project security policy",
