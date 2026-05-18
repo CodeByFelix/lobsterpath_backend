@@ -7,8 +7,9 @@ Lobster Path is a FastAPI-based backend that acts as the **Control Plane** for a
 It works in tandem with [**Lobster Trap**](https://github.com/user/lobstertrap) (the Go-based Data Plane) to form a complete AI security gateway.
 
 ---
-**Frontend Codebase: https:** https://github.com/CodeByFelix/lobsterpath_frontend
-**Lobster Trap Codebase:** https://github.com/CodeByFelix/lobstertrap
+-**Frontend Codebase: https:** https://github.com/CodeByFelix/lobsterpath_frontend
+-**Lobster Trap Codebase:** https://github.com/CodeByFelix/lobstertrap
+---
 
 ## ✨ Key Features
 
